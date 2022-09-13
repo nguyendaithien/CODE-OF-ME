@@ -1,0 +1,37 @@
+#!/usr/bin/perl-w
+use Getopt::Long;
+use strict;
+
+### End Lib ###
+my $help = '';
+&GetOptions(
+  "h|help" => \$help
+);
+
+if ($help) {
+   &PrintHelp;
+}
+
+sub PrintHelp{
+   print "Ussage: perl $0 \n";
+   print <<END; 
+   - Print the content from .data to .enddata in file timing.txt
+END
+   exit;
+}
+
+my $line = undef;
+my $file= 'timing1.txt';
+open(DATA,'<', $file) or die "$!\n";
+while($line = <DATA>){
+    if($line =~ m/.data/) {
+      while($line = <DATA>) {
+    if ($line =~ /\.enddata/ )  {
+      last;
+      }
+      print "$line";
+      }
+      }	
+}
+close(DATA);
+
