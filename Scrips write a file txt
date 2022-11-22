@@ -26,7 +26,7 @@ open(DATA,'<', $file) or die "$!\n";
 while($line = <DATA>){
     if($line =~ m/.data/) {
       while($line = <DATA>) {
-    if ($line =~ /\.enddataaaaaaaaaaa/ )  {
+    if ($line =~ /\.enddata/ )  {
       last;
       }
       print "$line";
